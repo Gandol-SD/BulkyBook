@@ -1,2 +1,2 @@
 # BulkyBook
- MVC Course - Learning
+ ASP.Net6 MVC Course - Learning
