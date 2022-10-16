@@ -3,6 +3,8 @@
     ViewData["Title"] = "Index";
 }
 
+<partial name="_NotificationAlert"/>
+
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
@@ -25,16 +27,28 @@
                 <th>
                     DisplayOrder
                 </th>
+                <th>
+
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach(Category c in Model){
                 <tr>
-                    <td style="width:50%">
+                    <td style="width:40%">
                         @c.Name
                     </td>
-                    <td style="width:50%">
+                    <td style="width:40%">
                         @c.DisplayOrder
+                    </td>
+                    <td style="width:20%">
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-primary" asp-controller="Category" asp-action="Edit" asp-route-id="@c.Id"> <i class="bi bi-pencil-square"></i> Edit </a>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-danger" asp-controller="Category" asp-action="Delete" asp-route-id="@c.Id"> <i class="bi bi-trash3-fill"></i> Delete </a>
+                        </div>
                     </td>
                 </tr>
             }

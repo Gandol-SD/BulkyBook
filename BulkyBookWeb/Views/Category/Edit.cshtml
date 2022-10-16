@@ -1,15 +1,15 @@
 ﻿@model BulkyBookWeb.Models.Category
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h2 class="ms-5 mt-4">Create Category</h2>
+<h2 class="ms-5 mt-4">Edit Category</h2>
 
 <hr />
 <div class="row py-5 ms-1">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group mt-1">
                 <label asp-for="Name" class="control-label"></label>
@@ -21,8 +21,13 @@
                 <input asp-for="DisplayOrder" class="form-control" />
                 <span asp-validation-for="DisplayOrder" class="text-danger"></span>
             </div>
+            <div class="form-group mt-1">
+                <label asp-for="CreatedDateTime" class="control-label"></label>
+                <input asp-for="CreatedDateTime" disabled class="form-control" />
+                <span asp-validation-for="CreatedDateTime" class="text-danger"></span>
+            </div>
             <div class="form-group mt-2">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Edit" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -36,5 +41,5 @@
     @{
         <partial name="_ValidationScriptsPartial" />
     }
-}
+    }
 
