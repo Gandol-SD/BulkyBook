@@ -262,3 +262,7 @@ D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\runtimes\u
 D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BulkyBook.DataAccess.dll
+D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BulkyBook.Models.dll
+D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BulkyBook.DataAccess.pdb
+D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBookWeb\bin\Debug\net6.0\BulkyBook.Models.pdb

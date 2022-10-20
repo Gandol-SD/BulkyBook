@@ -1,0 +1,81 @@
+﻿@model List<BulkyBook.Models.CoverType>
+@{
+    ViewData["Title"] = "Index";
+    int currPage = Convert.ToInt32(ViewData["CurrentPage"]);
+    int pageSize = Convert.ToInt32(ViewData["PageSize"]);
+    int totalPages = Convert.ToInt32(ViewData["TotalPages"]);
+}
+
+<partial name="_NotificationAlert"/>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">CoverType List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="CoverType" asp-action="Create" class="btn btn-primary"> 
+               <i class="bi bi-plus-square"></i> &nbsp; Create New CoverType</a>
+        </div>
+    </div>
+    <br><br>
+
+
+    <table class="table table-striped text-light" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    CoverType Name
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(CoverType c in Model){
+                <tr>
+                    <td style="width:40%">
+                        @c.Name
+                    </td>
+                    <td style="width:20%">
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-primary" asp-controller="CoverType" asp-action="Edit" asp-route-id="@c.Id"> <i class="bi bi-pencil-square"></i> Edit </a>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-danger" asp-controller="CoverType" asp-action="Delete" asp-route-id="@c.Id"> <i class="bi bi-trash3-fill"></i> Delete </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!--Pagination Buttons-->
+    @if(totalPages > 0){
+        @if (totalPages > 1)
+        {
+            <div style="display:flex; justify-content:center;">
+                <ul class="pagination">
+                    <li class="page-item @(currPage == 1 ? "disabled" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-page="1">&laquo;</a>
+                    </li>
+                    @for (int p = 1; p <= totalPages; p++)
+                    {
+                        <li class="page-item @(currPage == p ? "active" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-page="@p">@p</a>
+                        </li>
+                    }
+                    <li class="page-item @(currPage == totalPages ? "disabled" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-page="@totalPages">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        }
+    }else{
+        <h2 class="text-danger d-flex justify-content-center"> No CoverTypes Available </h2>
+    }
+    
+</div>
+
