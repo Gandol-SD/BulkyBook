@@ -17,6 +17,7 @@ namespace BulkyBook.DataAccess.Repository
         public Repository(AppDbContext dbx)
         {
             this.dbx = dbx;
+            //this.dbx.Products.Include(u => u.Category).Include(u => u.CoverType);
             this.dbSet = dbx.Set<T>();
         }
 
@@ -30,22 +31,44 @@ namespace BulkyBook.DataAccess.Repository
             dbSet.Remove(item);
         }
 
-        public IEnumerable<T> GetAll()
+        // includeProperties => "Category,CoverType"
+        public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if(includeProperties != null)
+            {
+                foreach (var prop in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(prop);
+                }
+            }
             return query.ToList();
         }
 
-        public IEnumerable<T> GetAllWhere(Expression<Func<T, bool>> filter)
+        public IEnumerable<T> GetAllWhere(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if (includeProperties != null)
+            {
+                foreach (var prop in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(prop);
+                }
+            }
             query = query.Where(filter);
             return query.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if (includeProperties != null)
+            {
+                foreach (var prop in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(prop);
+                }
+            }
             query = query.Where(filter);
             return query.FirstOrDefault();
         }

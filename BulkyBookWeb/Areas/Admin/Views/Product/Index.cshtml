@@ -1,12 +1,10 @@
-﻿@*@model List<BulkyBook.Models.CoverType>
+﻿@*@model List<BulkyBook.Models.Product>*@
+
 @{
-    ViewData["Title"] = "Index";
-    int currPage = Convert.ToInt32(ViewData["CurrentPage"]);
-    int pageSize = Convert.ToInt32(ViewData["PageSize"]);
-    int totalPages = Convert.ToInt32(ViewData["TotalPages"]);
+    var success = TempData["successmsg"];
 }
 
-<partial name="_NotificationAlert" />*@
+
 
 <div class="container p-3">
     <div class="row pt-4">
@@ -22,7 +20,7 @@
     <br><br>
 
 
-    <table class="table table-striped text-light" style="width:100%">
+    <table id="datable" class="table table-striped text-light" style="width:100%">
         <thead>
             <tr>
                 <th>Title</th>
@@ -30,57 +28,73 @@
                 <th>Price</th>
                 <th>Author</th>
                 <th>Category</th>
+                <th>Cover Type</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        @*<tbody>
-            @foreach (CoverType c in Model)
-            {
-                <tr>
-                    <td style="width:40%">
-                        @c.Name
-                    </td>
-                    <td style="width:20%">
-                        <div class="btn-group" role="group">
-                            <a class="btn btn-primary" asp-controller="CoverType" asp-action="Edit" asp-route-id="@c.Id"> <i class="bi bi-pencil-square"></i> Edit </a>
-                        </div>
-                        &nbsp;&nbsp;&nbsp;
-                        <div class="btn-group" role="group">
-                            <a class="btn btn-danger" asp-controller="CoverType" asp-action="Delete" asp-route-id="@c.Id"> <i class="bi bi-trash3-fill"></i> Delete </a>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>*@
     </table>
-
-    <!--Pagination Buttons-->
-    @*@if (totalPages > 0)
-    {
-        @if (totalPages > 1)
-        {
-            <div style="display:flex; justify-content:center;">
-                <ul class="pagination">
-                    <li class="page-item @(currPage == 1 ? "disabled" : "")">
-                        <a class="page-link" asp-action="Index" asp-route-page="1">&laquo;</a>
-                    </li>
-                    @for (int p = 1; p <= totalPages; p++)
-                    {
-                        <li class="page-item @(currPage == p ? "active" : "")">
-                            <a class="page-link" asp-action="Index" asp-route-page="@p">@p</a>
-                        </li>
-                    }
-                    <li class="page-item @(currPage == totalPages ? "disabled" : "")">
-                        <a class="page-link" asp-action="Index" asp-route-page="@totalPages">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        }
-    }
-    else
-    {
-        <h2 class="text-danger d-flex justify-content-center"> No CoverTypes Available </h2>
-    }*@
 
 </div>
 
+
+@section Scripts{
+    <script>
+        function deleteProduct(id) {
+            Swal.fire({
+                icon: "error",
+                title: 'Do you want to delete this product? ',
+                showConfirmButton: false,
+                showCloseButton: true,
+                showDenyButton: true,
+                denyButtonText: `Delete`,
+            }).then((result) => {
+                if (result.isDenied) {
+                    window.location.replace("/Admin/Product/DeletePost?id="+id);
+                }
+            })
+        }
+
+        var dataTable;
+        $(document).ready(function () {
+            dataTable = $('#datable').DataTable({
+                "ajax":{
+                    "url":"/Admin/Product/GetAll"
+                },
+                "columns":[
+                    { "data": "title", "width": "15%" },
+                    { "data": "isbn", "width": "15%" },
+                    { "data": "price", "width": "15%" },
+                    { "data": "author", "width": "15%" },
+                    { "data": "category.name", "width": "15%" },
+                    { "data": "coverType.name", "width": "15%" },
+                    { "data": "id",
+                        "render" : function(data){
+                            return `
+                                    <div class="btn-group" role="group">
+                                        <a class="d-inline btn btn-primary" href="/Admin/Product/Upsert?id=${data}"> <i class="bi bi-pencil-square"></i> Edit </a>
+                                    </div>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <div class="btn-group" role="group">
+                                        <a class="d-inline btn btn-danger" onclick="deleteProduct(${data})"> <i class="bi bi-trash3-fill"></i> Delete </a>
+                                    </div>
+                            `
+                        },
+                        "width": "15%" }
+                ]
+            });
+        });
+
+        // -------------------------------------------------
+        let msg = '@success';
+        if (msg != "") {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: msg,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+    </script>
+}

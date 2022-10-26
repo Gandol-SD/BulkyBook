@@ -1,4 +1,4 @@
-﻿@model Product
+﻿@model BulkyBook.Models.ViewModels.ProductVM
 
 @{
     ViewData["Title"] = "Upsert";
@@ -7,78 +7,91 @@
 <div class="d-inline-block mb-4">
     <a class="btn btn-info" asp-action="Index"> <i class="bi bi-box-arrow-left"></i> &nbsp; Back to List</a>
 </div>
-<h2 class="d-inline-block ms-3 mt-4">Create Product</h2>
+<h2 class="d-inline-block ms-3 mt-4">@(Model.product.Id == 0? "Create" : "Edit") Product</h2>
 
 <hr />
 <div class="row ms-1">
-    <div class="col-md-4 mb-3">
-        <form asp-action="Upsert">
+    <div class="col-md-4 mb-3 row">
+        <form asp-action="Upsert" enctype="multipart/form-data">
+            <input type="hidden" asp-for="product.Id"/>
+            <input type="hidden" asp-for="product.ImgUrl" />
+
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group mt-1">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <label asp-for="product.Title" class="control-label"></label>
+                <input asp-for="product.Title" class="form-control" />
+                <span asp-validation-for="product.Title" class="text-danger"></span>
             </div>
             <div class="form-group mt-1">
-                <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" rows="3" class="form-control" ></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-
-            <div class="form-group mt-1">
-                <label asp-for="ISBN" class="control-label"></label>
-                <input asp-for="ISBN" class="form-control" />
-                <span asp-validation-for="ISBN" class="text-danger"></span>
+                <label asp-for="product.Description" class="control-label"></label>
+                <textarea asp-for="product.Description" rows="3" class="form-control"></textarea>
+                <span asp-validation-for="product.Description" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-1">
-                <label asp-for="Author" class="control-label"></label>
-                <input asp-for="Author" class="form-control" />
-                <span asp-validation-for="Author" class="text-danger"></span>
+                <label asp-for="product.ISBN" class="control-label"></label>
+                <input asp-for="product.ISBN" class="form-control" />
+                <span asp-validation-for="product.ISBN" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-1">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                <label asp-for="product.Author" class="control-label"></label>
+                <input asp-for="product.Author" class="form-control" />
+                <span asp-validation-for="product.Author" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-1">
-                <label asp-for="ListPrice" class="control-label"></label>
-                <input asp-for="ListPrice" class="form-control" />
-                <span asp-validation-for="ListPrice" class="text-danger"></span>
+                <label asp-for="product.Price" class="control-label"></label>
+                <input asp-for="product.Price" class="form-control" />
+                <span asp-validation-for="product.Price" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-1">
-                <label asp-for="Price50" class="control-label"></label>
-                <input asp-for="Price50" class="form-control" />
-                <span asp-validation-for="Price50" class="text-danger"></span>
+                <label asp-for="product.ListPrice" class="control-label"></label>
+                <input asp-for="product.ListPrice" class="form-control" />
+                <span asp-validation-for="product.ListPrice" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-1">
-                <label asp-for="Price100" class="control-label"></label>
-                <input asp-for="Price100" class="form-control" />
-                <span asp-validation-for="Price100" class="text-danger"></span>
+                <label asp-for="product.Price50" class="control-label"></label>
+                <input asp-for="product.Price50" class="form-control" />
+                <span asp-validation-for="product.Price50" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-1">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-select" >
+                <label asp-for="product.Price100" class="control-label"></label>
+                <input asp-for="product.Price100" class="form-control" />
+                <span asp-validation-for="product.Price100" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-1">
+                <label asp-for="product.ImgUrl" class="control-label"></label>
+                <input type="file" id="uploadedFile" name="file" class="form-control"/>
+                <span asp-validation-for="product.ImgUrl" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-1">
+                <label asp-for="product.CategoryId" class="control-label"></label>
+                <select asp-for="product.CategoryId" asp-items="@Model.categoryList" class="form-select">
                     <option disabled selected>-- Select Category --</option>
                 </select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                <span asp-validation-for="product.CategoryId" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-1">
-                <label asp-for="CoverTypeId" class="control-label"></label>
-                <select asp-for="CoverTypeId" asp-items="ViewBag.CoverTypeList" class="form-select">
+                <label asp-for="product.CoverTypeId" class="control-label"></label>
+                <select asp-for="product.CoverTypeId" asp-items="@Model.coverTypeList" class="form-select">
                     <option disabled selected>-- Select CoverType --</option>
                 </select>
-                <span asp-validation-for="CoverTypeId" class="text-danger"></span>
+                <span asp-validation-for="product.CoverTypeId" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-2 mb-5">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                @if(Model.product.Id != 0){
+                    <input type="submit" value="Edit" class="btn btn-primary" />
+                }else{
+                    <input type="submit" onclick="return validateInput()" value="Create" class="btn btn-primary" />
+                }
             </div>
         </form>
     </div>
@@ -88,6 +101,20 @@
 
 @section Scripts{
     @{
-        <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
     }
+    <script>
+        function validateInput(){
+            if(document.getElementById("uploadedFile").value == ""){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please upload an image!',
+                });
+                return false;
+            }else{
+                return true;
+            }
+        }
+    </script>
     }
