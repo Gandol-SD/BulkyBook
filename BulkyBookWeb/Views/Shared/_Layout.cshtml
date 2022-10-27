@@ -50,12 +50,16 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted bg-dark" style="position:fixed">
-        <div class="container text-danger">
-            &copy; 2022 - BulkyBookWeb
+    <footer class="d-flex flex-wrap justify-content-between footer align-items-center py-3 bg-black" 
+            style="position:fixed; width:100%; bottom:0px;">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-muted">© 2022 BulkyBook, Inc</span>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
