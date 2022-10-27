@@ -6,7 +6,23 @@
     int totalPages = Convert.ToInt32(ViewData["TotalPages"]);
 }
 
-<partial name="_NotificationAlert"/>
+@section Scripts{
+    @{
+        var success = TempData["successmsg"];
+    }
+    <script>
+        let msg = '@success';
+        if (msg != "") {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: msg,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    </script>
+}
 
 <div class="container p-3">
     <div class="row pt-4">

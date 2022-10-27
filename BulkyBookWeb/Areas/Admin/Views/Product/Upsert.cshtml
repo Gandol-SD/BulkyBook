@@ -102,19 +102,19 @@
 @section Scripts{
     @{
     <partial name="_ValidationScriptsPartial" />
-    }
-    <script>
-        function validateInput(){
-            if(document.getElementById("uploadedFile").value == ""){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Please upload an image!',
-                });
-                return false;
-            }else{
-                return true;
+        <script>
+            function validateInput() {
+                if (document.getElementById("uploadedFile").value == "") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please upload an image!',
+                    });
+                    return false;
+                } else {
+                    return true;
+                }
             }
-        }
-    </script>
+        </script>    
     }
+}
