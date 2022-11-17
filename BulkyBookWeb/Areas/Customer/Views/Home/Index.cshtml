@@ -7,7 +7,7 @@
     @foreach(var prod in Model){
         <div class="col-lg-3 col-md-6"> 
             <div class="row p-2">
-                <div class="col-12 p-1" style="border:1px; solid #008cba; border-radius:5px;">
+                <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
                     <div class="card">
                         <img src="@prod.ImgUrl" class="card-img-top rounded"/>
                         <div class="card-body">
@@ -20,7 +20,7 @@
                                 <p class="card-title text-info">as low as <b>@prod.Price100.ToString("0.00")</b></p>
                             </div>
                             <div>
-                                <a class="btn btn-primary form-control" asp-action="Details" asp-route-id="@prod.Id">
+                                <a class="btn btn-primary form-control" asp-action="Details" asp-route-_productId="@prod.Id">
                                     Details
                                 </a>
                             </div>
@@ -32,3 +32,24 @@
     }
 
 </div>
+
+@section Scripts{
+    <script>
+        // ------------------------------------------ Alert Notifications -------------------------------------
+        @{
+            var success = TempData["successmsg"];
+        }
+
+            let msg = '@success';
+        if (msg != "") {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: msg,
+                showConfirmButton: false,
+                timer: 3000
+            });
+        }
+                // -----------------------------------------------------------------------------------------------------
+    </script>
+}

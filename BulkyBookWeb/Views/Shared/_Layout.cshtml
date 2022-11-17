@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using BulkyBook.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
-    
+
 </head>
 <body>
     <header>
@@ -24,17 +27,48 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Content Managment</a>
-                            <div class="dropdown-menu" data-bs-popper="static">
-                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                                <a class="nav-link text-light" asp-area="Admin" asp-controller="CoverType" asp-action="Index">CoverType</a>
-                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
-                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
-
-                            </div>
                         </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link"> | </a>
+                        </li>
+                        @if (User.IsInRole(StaticDetailes.Role_Admin))
+                        {
+                            <li class="nav-item">
+                                @*<a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Content Managment</a>
+                            <div class="dropdown-menu" data-bs-popper="static">
+
+
+                            </div>*@
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="CoverType" asp-action="Index">CoverType</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link"> | </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Admin_Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Order" asp-action="Index">Orders</a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                                @await Component.InvokeAsync("ShoppingCart")
+                            </a>
+                        </li>
+
+
                     </ul>
                     <partial name="_LoginPartial" />
                     <form class="d-flex">
@@ -50,7 +84,7 @@
             @RenderBody()
         </main>
     </div>
-    <footer class="d-flex flex-wrap justify-content-between footer align-items-center py-3 bg-black" 
+    <footer class="d-flex flex-wrap justify-content-between footer align-items-center py-3 bg-black"
             style="position:fixed; width:100%; bottom:0px;">
         <div class="col-md-4 d-flex align-items-center">
             <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">

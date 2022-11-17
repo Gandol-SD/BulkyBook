@@ -129,13 +129,13 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string? returnUrl = null)
         {
-            if (!_roleManager.RoleExistsAsync(StaticDetailes.Role_Admin).GetAwaiter().GetResult())
-            {
-                _roleManager.CreateAsync(new IdentityRole(StaticDetailes.Role_Admin)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(StaticDetailes.Role_User_Indie)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(StaticDetailes.Role_User_Comp)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(StaticDetailes.Role_Employee)).GetAwaiter().GetResult();
-            }
+            //if (!_roleManager.RoleExistsAsync(StaticDetailes.Role_Admin).GetAwaiter().GetResult())
+            //{
+            //    _roleManager.CreateAsync(new IdentityRole(StaticDetailes.Role_Admin)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(StaticDetailes.Role_User_Indie)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(StaticDetailes.Role_User_Comp)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(StaticDetailes.Role_Employee)).GetAwaiter().GetResult();
+            //}
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             Input = new InputModel()
@@ -208,7 +208,14 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (User.IsInRole(StaticDetailes.Role_Admin))
+                        {
+                            TempData["successmsg"] = "New Admin user created successfully";
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }

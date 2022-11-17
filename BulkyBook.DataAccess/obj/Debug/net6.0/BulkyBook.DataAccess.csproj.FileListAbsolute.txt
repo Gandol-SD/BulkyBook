@@ -15,3 +15,5 @@ D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBook.DataAccess\obj\Debug\net6.0\re
 D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBook.DataAccess\obj\Debug\net6.0\BulkyBook.DataAccess.pdb
 D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBook.DataAccess\obj\Debug\net6.0\BulkyBook.DataAccess.genruntimeconfig.cache
 D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBook.DataAccess\obj\Debug\net6.0\ref\BulkyBook.DataAccess.dll
+D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBook.DataAccess\bin\Debug\net6.0\BulkyBook.Utility.dll
+D:\My Projects\ASP\MVC Course\BulkyBook\BulkyBook.DataAccess\bin\Debug\net6.0\BulkyBook.Utility.pdb

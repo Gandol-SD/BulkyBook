@@ -17,7 +17,7 @@ namespace BulkyBook.DataAccess.Repository
         public Repository(AppDbContext dbx)
         {
             this.dbx = dbx;
-            //this.dbx.Products.Include(u => u.Category).Include(u => u.CoverType);
+            //this.dbx.ShoppingCart.Include(u => u.Product);
             this.dbSet = dbx.Set<T>();
         }
 

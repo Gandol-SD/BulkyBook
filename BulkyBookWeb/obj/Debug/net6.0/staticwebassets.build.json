@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NtKpMJdc+jXEpNvOiHR2sUjzVJdQu+0yCPXMAXq4naY=",
+  "Hash": "XiZZIJVEvpAjM1QeCLy9elDDwmevEHNb+xNo+ez9ehQ=",
   "Source": "BulkyBookWeb",
   "BasePath": "_content/BulkyBookWeb",
   "Mode": "Default",
@@ -1120,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\My Projects\\ASP\\MVC Course\\BulkyBook\\BulkyBookWeb\\wwwroot\\images\\Aqua_Lake.jpg",
+      "SourceId": "BulkyBookWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\My Projects\\ASP\\MVC Course\\BulkyBook\\BulkyBookWeb\\wwwroot\\",
+      "BasePath": "_content/BulkyBookWeb",
+      "RelativePath": "images/Aqua_Lake.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Aqua_Lake.jpg"
     },
     {
       "Identity": "D:\\My Projects\\ASP\\MVC Course\\BulkyBook\\BulkyBookWeb\\wwwroot\\images\\products\\5bde9a8b-ec9d-44c6-98ad-b2399e059901.jpg",

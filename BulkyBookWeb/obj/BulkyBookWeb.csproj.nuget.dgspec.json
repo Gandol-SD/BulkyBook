@@ -30,6 +30,9 @@
             "projectReferences": {
               "D:\\My Projects\\ASP\\MVC Course\\BulkyBook\\BulkyBook.Models\\BulkyBook.Models.csproj": {
                 "projectPath": "D:\\My Projects\\ASP\\MVC Course\\BulkyBook\\BulkyBook.Models\\BulkyBook.Models.csproj"
+              },
+              "D:\\My Projects\\ASP\\MVC Course\\BulkyBook\\BulkyBook.Utility\\BulkyBook.Utility.csproj": {
+                "projectPath": "D:\\My Projects\\ASP\\MVC Course\\BulkyBook\\BulkyBook.Utility\\BulkyBook.Utility.csproj"
               }
             }
           }
@@ -188,9 +191,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.4.2, )"
+            },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[6.0.10, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[3.4.2, )"
             }
           },
           "imports": [
@@ -260,6 +271,10 @@
               "target": "Package",
               "version": "[2.14.1, )"
             },
+            "Microsoft.AspNetCore.Authentication.Facebook": {
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.10, )"
@@ -299,6 +314,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.10, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[40.14.0, )"
             }
           },
           "imports": [

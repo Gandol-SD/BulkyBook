@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BulkyBook.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using BulkyBook.Models.ViewModels;
 
 namespace BulkyBook.DataAccess
 {
@@ -16,5 +17,8 @@ namespace BulkyBook.DataAccess
         public DbSet<Product> Products { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<ShoppingCart> ShoppingCart { get; set; }
+        public DbSet<OrderHeader> OrderHeader { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
     }
 }
